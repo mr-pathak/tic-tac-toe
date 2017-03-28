@@ -1,5 +1,7 @@
 package com.miteshpathak.tictactoe;
 
+import static com.miteshpathak.tictactoe.Constants.*;
+
 public class TicTacToe {
 	private int maxMoves;
 	private Player currentPlayer;
@@ -8,9 +10,6 @@ public class TicTacToe {
 	private Board board;
 
 	public TicTacToe(int gridSize) {
-		if (gridSize < 3 || gridSize > 10) {
-			throw new RuntimeException("Grid size is expected to be between 3 and 10");
-		}
 		this.board = new Board(gridSize);
 		this.maxMoves = board.getMaxNumericRepresentation();
 		initGame();
@@ -41,9 +40,7 @@ public class TicTacToe {
 
 
 	public void play(int numericRepresentation) {
-		if (gameState != State.PLAYING) {
-			throw new RuntimeException("Game already finished");
-		}
+		ArgumentsValidator.checkEquals(gameState, State.PLAYING, ERR_GAME_FINISHED);
 		totalMoves++;
 		int row = board.getRow(numericRepresentation);
 		int column = board.getColumn(numericRepresentation);
@@ -67,7 +64,7 @@ public class TicTacToe {
 		board.printBoard();
 	}
 
-	public void printState() {
+	public void printStatus() {
 		if (gameState == State.WON) {
 			System.out.println(currentPlayer.getName() + " wins!");
 		}
@@ -87,7 +84,7 @@ public class TicTacToe {
 		if (gameState == State.PLAYING) {
 			System.out.println("Game still in progress!");
 		} else {
-			printState();
+			printStatus();
 		}
 	}
 }

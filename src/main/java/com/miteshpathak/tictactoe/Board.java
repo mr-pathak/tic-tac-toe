@@ -1,7 +1,8 @@
 package com.miteshpathak.tictactoe;
 
+import static com.miteshpathak.tictactoe.Constants.*;
+
 public class Board {
-	private static final String EMPTY = "";
 	private static String UNDER_SCORES = "";
 	private static String ROW_FORMAT = "";
 
@@ -10,9 +11,7 @@ public class Board {
 	private int maxNumericRepresentation;
 
 	public Board(int gridSize) {
-		if (gridSize < 3 || gridSize > 10) {
-			throw new RuntimeException("Grid size is expected to be between 3 and 10");
-		}
+		ArgumentsValidator.checkInRange(gridSize, MIN_GRID_SIZE, MAX_GRID_SIZE, ERR_GRID_SIZE);
 		this.gridSize = gridSize;
 		this.maxNumericRepresentation = gridSize * gridSize;
 		this.board = new String[gridSize][gridSize];
@@ -29,27 +28,25 @@ public class Board {
 	}
 
 	private String getNumericRepresentationString(int i, int j) {
-		return EMPTY + getNumericRepresentation(i, j);
+		return String.valueOf(getNumericRepresentation(i, j));
 	}
 
 	public int getNumericRepresentation(int row, int column) {
-		if (row < 0 || row >= gridSize || column < 0 || column >= gridSize) {
-			throw new RuntimeException("Invalid row and/or column");
-		}
+		ArgumentsValidator.checkInRange(row, 0, gridSize, ERR_INVALID_ROW);
+		ArgumentsValidator.checkInRange(column, 0, gridSize, ERR_INVALID_COL);
+
 		return (row * gridSize) + (column + 1);
 	}
 
 	public int getColumn(int numericRepresentation) {
-		if (numericRepresentation < 1 || numericRepresentation > maxNumericRepresentation) {
-			throw new RuntimeException("Invalid number for grid");
-		}
+		ArgumentsValidator.checkInRange(numericRepresentation, 1,
+				maxNumericRepresentation, ERR_INVALID_BOARD_NUM);
 		return (numericRepresentation - 1) % gridSize;
 	}
 
 	public int getRow(int numericRepresentation) {
-		if (numericRepresentation < 1 || numericRepresentation > maxNumericRepresentation) {
-			throw new RuntimeException("Invalid number for grid");
-		}
+		ArgumentsValidator.checkInRange(numericRepresentation, 1,
+				maxNumericRepresentation, ERR_INVALID_BOARD_NUM);
 		return (numericRepresentation - 1) / gridSize;
 	}
 
@@ -61,12 +58,17 @@ public class Board {
 
 	private boolean isWinByRow(int row, String value) {
 		int maxCount = 0;
+		int continousCount = 0;
 		for (int c = 0; c < gridSize; c++) {
 			if (board[row][c].equals(value)) {
-				maxCount++;
+				continousCount++;
+			} else {
+				maxCount = Math.max(maxCount, continousCount);
+				continousCount = 0;
 			}
 		}
-		if (maxCount == 3) {
+		maxCount = Math.max(maxCount, continousCount);
+		if (maxCount == WIN_COUNT) {
 			return true;
 		}
 		return false;
@@ -74,12 +76,17 @@ public class Board {
 
 	private boolean isWinByColum(int column, String value) {
 		int maxCount = 0;
+		int continousCount = 0;
 		for (int r = 0; r < gridSize; r++) {
 			if (board[r][column].equals(value)) {
-				maxCount++;
-			}			
+				continousCount++;
+			} else {
+				maxCount = Math.max(maxCount, continousCount);
+				continousCount = 0;
+			}
 		}
-		if (maxCount == 3) {
+		maxCount = Math.max(maxCount, continousCount);
+		if (maxCount == WIN_COUNT) {
 			return true;
 		}
 		return false;
@@ -89,12 +96,17 @@ public class Board {
 		// check for main diagonal
 		if (rowPlayed == columnPlayed) {
 			int maxCount = 0;
+			int continousCount = 0;
 			for (int i = 0; i < gridSize; i++) {
 				if (board[i][i].equals(value)) {
-					maxCount++;
-				}			
+					continousCount++;
+				} else {
+					maxCount = Math.max(maxCount, continousCount);
+					continousCount = 0;
+				}
 			}
-			if (maxCount == 3) {
+			maxCount = Math.max(maxCount, continousCount);
+			if (maxCount == WIN_COUNT) {
 				return true;
 			}
 		}
@@ -102,12 +114,17 @@ public class Board {
 		// check for second diagonal
 		if (rowPlayed == (gridSize - (columnPlayed + 1))) {
 			int maxCount = 0;
+			int continousCount = 0;
 			for (int i = 0; i < gridSize; i++) {
 				if (board[i][(gridSize - (i + 1))].equals(value)) {
-					maxCount++;
-				}			
+					continousCount++;
+				} else {
+					maxCount = Math.max(maxCount, continousCount);
+					continousCount = 0;
+				}
 			}
-			if (maxCount == 3) {
+			maxCount = Math.max(maxCount, continousCount);
+			if (maxCount == WIN_COUNT) {
 				return true;
 			}
 		}
@@ -115,9 +132,8 @@ public class Board {
 	}
 
 	public void setValue(int row, int column, String value) {
-		if (!board[row][column].equals(getNumericRepresentationString(row, column))) {
-			throw new RuntimeException("The board value is already set");
-		}
+		String expectedBoardVal = getNumericRepresentationString(row, column);
+		ArgumentsValidator.checkEquals(board[row][column], expectedBoardVal, ERR_BOARD_VALUE_SET);
 		this.board[row][column] = value;
 	}
 

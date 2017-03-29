@@ -76,7 +76,7 @@ public class TicTacToe {
 			System.out.println(DRAW_MSG);
 		}
 		if (gameState == State.PLAYING) {
-			System.out.println(String.format(CONT_MSG_FM, currentPlayer.getName()));
+			System.out.println(String.format(CONT_MSG_FM, currentPlayer.getName(), currentPlayer.getValue()));
 		}
 	}
 

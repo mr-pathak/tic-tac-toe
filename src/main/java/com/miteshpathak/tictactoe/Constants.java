@@ -25,7 +25,7 @@ public class Constants {
 
 	public static final String DRAW_MSG = "Its a DRAW folks! ";
 	public static final String WIN_MSG_FM = "%s wins! ";
-	public static final String CONT_MSG_FM = "Its %s turns to play ";
+	public static final String CONT_MSG_FM = "Its %s turns to play (%s)";
 
 	public static final int WIN_COUNT = 3;
 	public static final int MIN_GRID_SIZE = 3;

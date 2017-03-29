@@ -14,6 +14,10 @@ $ java -jar tic-tac-toe-${version}-exec.jar
 ```
 
 # How to Play
+Like paper based Tic Tac Toe game, the player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
+
+In this edition, we accept any grid size but the winner is the one who succeeds in placing three consecutive marks.
+In later edition, we will make it based on users input.
 
 ```
 Please enter GRID size (N) or press ENTER to set default value (= 3)
@@ -31,7 +35,7 @@ Let the game begin!
  4 |   5 |   6
  ------------------
  7 |   8 |   9
-Its Dark Knight's turns to play
+Its Dark Knight's turns to play (X)
 >> 5
 
  1 |   2 |   3
@@ -39,7 +43,7 @@ Its Dark Knight's turns to play
  4 |   5 |   6
  ------------------
  7 |   8 |   9
-Its Dark Knight's turns to play
+Its Dark Knight's turns to play (O)
 >> 5
 ```
 
@@ -68,13 +72,16 @@ $ java -jar target/tic-tac-toe-${version}-exec.jar
  - Write Integration tests
  - Create Single Player Mode (Min Max algorihtm to play against CPU)
 
-License
-----
+# License
 
 MIT
 **Free Software**
 
+
+# Author
+[Mitesh Pathak]
+
    [git-repo-url]: <https://github.com/mr-pathak/tic-tac-toe>
    [release]: <https://github.com/mr-pathak/tic-tac-toe/bin/tictactoe-0.1.0-exec.jar>
-   [mitesh]: <http://miteshpathak.com>
+   [Mitesh Pathak]: <http://miteshpathak.com>
    

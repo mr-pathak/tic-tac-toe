@@ -40,11 +40,11 @@ Its Dark Knight's turns to play (X)
 
  1 |   2 |   3
  ------------------
- 4 |   5 |   6
+ 4 |   X |   6
  ------------------
  7 |   8 |   9
 Its Dark Knight's turns to play (O)
->> 5
+>> 3
 ```
 
 # Contribute
@@ -82,6 +82,6 @@ MIT
 [Mitesh Pathak]
 
    [git-repo-url]: <https://github.com/mr-pathak/tic-tac-toe>
-   [release]: <https://github.com/mr-pathak/tic-tac-toe/bin/tictactoe-0.1.0-exec.jar>
+   [release]: <https://github.com/mr-pathak/tic-tac-toe/releases/tag/v0.1>
    [Mitesh Pathak]: <http://miteshpathak.com>
    

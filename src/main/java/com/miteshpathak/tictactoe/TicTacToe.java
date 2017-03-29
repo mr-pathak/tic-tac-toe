@@ -2,6 +2,11 @@ package com.miteshpathak.tictactoe;
 
 import static com.miteshpathak.tictactoe.Constants.*;
 
+/**
+ * TicTacToe game engine
+ * 
+ * @author Mitesh Pathak <miteshpathak05@gmail.com>
+ */
 public class TicTacToe {
 	private int maxMoves;
 	private Player currentPlayer;
@@ -41,18 +46,17 @@ public class TicTacToe {
 
 	public void play(int numericRepresentation) {
 		ArgumentsValidator.checkEquals(gameState, State.PLAYING, ERR_GAME_FINISHED);
-		totalMoves++;
 		int row = board.getRow(numericRepresentation);
 		int column = board.getColumn(numericRepresentation);
 		board.setValue(row, column, currentPlayer.getValue());
+		totalMoves++;
 		updateGameState(row, column);
 	}
 
 	private void updateGameState(int row, int column) {
 		if (board.isWinningMove(row, column, currentPlayer.getValue())) {
 			gameState = State.WON;
-		}
-		if (totalMoves == maxMoves) {
+		} else  if (totalMoves == maxMoves) {
 			gameState = State.DRAW;
 		}
 		if (gameState == State.PLAYING) {
@@ -66,13 +70,13 @@ public class TicTacToe {
 
 	public void printStatus() {
 		if (gameState == State.WON) {
-			System.out.println(currentPlayer.getName() + " wins!");
+			System.out.println(String.format(WIN_MSG_FM,  currentPlayer.getName()));
 		}
 		if (gameState == State.DRAW) {
-			System.out.println("Its a DRAW folks!");
+			System.out.println(DRAW_MSG);
 		}
 		if (gameState == State.PLAYING) {
-			System.out.println("Its " + currentPlayer.getName() + " turns to play");
+			System.out.println(String.format(CONT_MSG_FM, currentPlayer.getName()));
 		}
 	}
 

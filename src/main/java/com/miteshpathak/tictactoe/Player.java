@@ -1,5 +1,10 @@
 package com.miteshpathak.tictactoe;
 
+/**
+ * Represent two players playing Tic Tac Toe
+ * 
+ * @author Mitesh Pathak <miteshpathak05@gmail.com>
+ */
 public enum Player {
 	X("X", "Player1"), O("O", "Player2");
 

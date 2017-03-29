@@ -2,6 +2,12 @@ package com.miteshpathak.tictactoe;
 
 import static com.miteshpathak.tictactoe.Constants.*;
 
+/**
+ * This class represents, the Tic Tac Toe board.
+ * Each cube/field on the board is represented by a unique number
+ * 
+ * @author Mitesh Pathak <miteshpathak05@gmail.com>
+ */
 public class Board {
 	private static String UNDER_SCORES = "";
 	private static String ROW_FORMAT = "";
@@ -148,7 +154,6 @@ public class Board {
 		rowFormat.append("%3s");
 		underScores.append("------");
 
-		// System.out.println("[INFO] Setting format to " + rowFormat);
 		ROW_FORMAT = rowFormat.toString();
 		UNDER_SCORES = underScores.toString();
 	}

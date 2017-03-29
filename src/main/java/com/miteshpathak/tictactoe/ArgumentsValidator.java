@@ -1,5 +1,11 @@
 package com.miteshpathak.tictactoe;
 
+/**
+ * Utility class to validate arguments.
+ * Throws {@link RuntimeException} if argument validation fails
+ * 
+ * @author Mitesh Pathak <miteshpathak05@gmail.com>
+ */
 public class ArgumentsValidator {
 
 	public static void checkInRange(int num, int min, int max, String message) {

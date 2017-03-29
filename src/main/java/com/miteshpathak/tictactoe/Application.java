@@ -5,10 +5,13 @@ import java.util.Scanner;
 import static com.miteshpathak.tictactoe.Constants.*;
 
 /**
- * Tic Tac Toe
+ * Tic Tac Toe entry point
+ * This class interacts with user and uses {@code TicTacToe} to play the game
  *
+ * @author Mitesh Pathak <miteshpathak05@gmail.com>
  */
 public class Application {
+
 	public static void main( String[] args ) {
 		try (Scanner console = new Scanner(System.in)) {
 			System.out.println(GET_GRID_SIZE);
@@ -36,14 +39,17 @@ public class Application {
 			}
 
 			// Let the game begin
+			System.out.println();
+			System.out.println(START_GAME);
 			while (game.getGameState() == State.PLAYING) {
 				try {
 					game.printBoard();
 					game.printStatus();
 					int move = readInt(console);
 					game.play(move);
+					System.out.println();
 				} catch (RuntimeException ex) {
-					System.out.print("[WARN] Invalid move: ");
+					System.out.print(WARN_INVALID_MOVE);
 					System.out.println(ex.getMessage());
 				}
 			}
@@ -52,7 +58,7 @@ public class Application {
 			game.printResult();
 			game.printBoard();
 		} catch (Exception e) {
-			System.out.println("[ERROR] Failed to Initialize Game");
+			System.out.println(ERR_INIT_FAILED);
 			e.printStackTrace(System.out);
 		}
 	}
@@ -66,7 +72,7 @@ public class Application {
 	}
 
 	private static String readString(Scanner console) {
-		System.out.print(">> ");
+		System.out.print(CONSOLE_IN);
 		return console.nextLine();
 	}
 

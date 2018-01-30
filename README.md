@@ -43,7 +43,7 @@ Its Dark Knight's turns to play (X)
  4 |   X |   6
  ------------------
  7 |   8 |   9
-Its Dark Knight's turns to play (O)
+Its Bane's turns to play (O)
 >> 3
 ```
 
